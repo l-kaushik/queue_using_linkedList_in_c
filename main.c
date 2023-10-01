@@ -22,26 +22,40 @@ typedef struct Queue {
 Queue * createQueue(){
     Queue *q = (Queue *)malloc(sizeof(Queue));
     checkNull(q);
-    Node *n = (Node *)malloc(sizeof(Node));
-    checkNull(n);
-    n->next = NULL;
-    q->front = q->rear = n;
-    q->size = 1;
+    q->front = q->rear = NULL;
+    q->size = 0;
 
     return q;
+}
+
+int isEmpty(Queue *q){
+    if(NULL == q->front)
+        return 1;
+    return 0;
+}
+
+void enqueue(Queue *q, int value){
+
+    Node *n = (Node *)malloc(sizeof(Node));
+    checkNull(n);
+    n->data = value;
+    n->next = NULL;
+
+    if(isEmpty(q)){
+        q->front = q->rear = n;
+    }
+    else{
+        q->rear->next = n;
+        q->rear = n;
+    }
+    q->size++;
 }
 
 int main()
 {
     Queue *q = createQueue();
-    q->rear->data = 4;
-    q->rear->next = (Node *)malloc(sizeof(Node));
-    checkNull(q->front->next);
-    q->rear = q->front->next;
-    q->rear->data = 5;
-    q->rear->next = NULL;
-    q->size++;
-
-    printf("%d\t%d",q->front->data,q->rear->data);
+    enqueue(q, 4);
+    enqueue(q, 5);
+    printf("%d\t%d",q->front->data, q->rear->data);
     return 0;
 }
