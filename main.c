@@ -51,11 +51,20 @@ void enqueue(Queue *q, int value){
     q->size++;
 }
 
+void display(Queue *q){
+    Node *ptr = q->front;
+
+    while(NULL != ptr){
+        printf("%d\t",ptr->data);
+        ptr = ptr->next;
+    }
+}
+
 int main()
 {
     Queue *q = createQueue();
     enqueue(q, 4);
     enqueue(q, 5);
-    printf("%d\t%d",q->front->data, q->rear->data);
+    display(q);
     return 0;
 }
