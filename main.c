@@ -60,11 +60,41 @@ void display(Queue *q){
     }
 }
 
+void dequeue(Queue *q){
+    if(isEmpty(q)){
+        puts("Queue is empty\n");
+    }
+    else{
+        Node *n = q->front;
+        q->front = q->front->next;
+        free(n);
+    }
+}
+
 int main()
 {
     Queue *q = createQueue();
-    enqueue(q, 4);
-    enqueue(q, 5);
+
+    // testing
+    
+    for(int i = 1; i < 11; i++){
+        enqueue(q, i*10);
+    }
+
     display(q);
+
+    dequeue(q);
+    dequeue(q);
+    dequeue(q);
+    dequeue(q);
+
+    enqueue(q, 210);
+    enqueue(q, 3230);
+    enqueue(q, 234);
+
+    puts("\n");
+
+    display(q);
+
     return 0;
 }
