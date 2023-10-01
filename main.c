@@ -60,14 +60,19 @@ void display(Queue *q){
     }
 }
 
-void dequeue(Queue *q){
+int dequeue(Queue *q){
+    int signal = -1;
     if(isEmpty(q)){
         puts("Queue is empty\n");
+        return signal;
     }
     else{
         Node *n = q->front;
         q->front = q->front->next;
+        signal = n->data;
         free(n);
+
+        return signal;
     }
 }
 
@@ -76,25 +81,12 @@ int main()
     Queue *q = createQueue();
 
     // testing
-    
+
     for(int i = 1; i < 11; i++){
         enqueue(q, i*10);
     }
-
     display(q);
-
-    dequeue(q);
-    dequeue(q);
-    dequeue(q);
-    dequeue(q);
-
-    enqueue(q, 210);
-    enqueue(q, 3230);
-    enqueue(q, 234);
-
-    puts("\n");
-
+    printf("\n%d\n",dequeue(q));
     display(q);
-
     return 0;
 }
