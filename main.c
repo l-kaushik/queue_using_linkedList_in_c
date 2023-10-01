@@ -33,6 +33,15 @@ Queue * createQueue(){
 
 int main()
 {
+    Queue *q = createQueue();
+    q->rear->data = 4;
+    q->rear->next = (Node *)malloc(sizeof(Node));
+    checkNull(q->front->next);
+    q->rear = q->front->next;
+    q->rear->data = 5;
+    q->rear->next = NULL;
+    q->size++;
 
+    printf("%d\t%d",q->front->data,q->rear->data);
     return 0;
 }
