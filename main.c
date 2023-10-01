@@ -25,12 +25,14 @@ Queue * createQueue(){
     Node *n = (Node *)malloc(sizeof(Node));
     checkNull(n);
     n->next = NULL;
+    q->front = q->rear = n;
+    q->size = 1;
 
     return q;
 }
 
 int main()
 {
-    printf("Hello World");
+
     return 0;
 }
